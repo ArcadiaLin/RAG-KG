@@ -19,7 +19,10 @@ def debug(func):
 class TemplateChatBot():
     # for qwen1.5&llama3&Yi
     def __init__(self, checkpoint_dir: str, debug=True):
-        self.model = AutoModelForCausalLM.from_pretrained(checkpoint_dir, torch_dtype="auto", device_map="auto")
+        self.model = AutoModelForCausalLM.from_pretrained(
+            checkpoint_dir,
+            torch_dtype="auto",
+            device_map="auto")
         self.tokenizer = AutoTokenizer.from_pretrained(checkpoint_dir)
         self.messages = [{'role': 'system', 'content': 'You are a helpful assistant.'}]
         self.debug_mode=debug
@@ -37,7 +40,10 @@ class TemplateChatBot():
             max_new_tokens=512
         )
         generated_ids = [
-            output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
+            output_ids[len(input_ids):] for input_ids, output_ids in zip(
+                model_inputs.input_ids,
+                generated_ids
+                )
         ]
         response = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
         self.messages.append({"role":"assistant", "content": f"{response}"})

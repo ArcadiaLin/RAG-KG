@@ -9,7 +9,7 @@ class Fuseki():
         self.sparql.setMethod(POST)
         self.sparql.setMethod(JSON)
         self.prefix_list = ["http://dasi/eid/", "http://dasi/relation/", "http://dasi/property/", "http://dasi/pid/"] # examples
-        self.prefix = """PREFIX eid:<http://dasi/eid/>\nPREFIX relation:<http://dasi/relation/>\nPREFIX property:<http://dasi/property/>\nPREFIX pid:<http://dasi/pid/>"""
+        self.prefix = """PREFIX eid:<http://dasi/eid/>\nPREFIX relation:<http://dasi/relation/>\nPREFIX property:<http://dasi/property/>\nPREFIX pid:<http://dasi/pid/>""" # examples
         self.triplet_list = []
 
     def execute_query(self, query: str):
